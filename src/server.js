@@ -12,7 +12,7 @@ const app = express();
 const cors = require('cors');
 app.use(
   cors({
-    origin: ["http://localhost:8080","http://localhost:5173","https://jc-shop.onrender.com", "https://js-shop-admin.onrender.com"]
+    origin: ["http://localhost:8080","http://localhost:5173","https://jc-shop.onrender.com", "https://jc-shop-admin.onrender.com"]
   })
 ); 
  
