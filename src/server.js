@@ -8,6 +8,10 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const app = express();
 
+require('dotenv').config();
+const port = process.env.PORT;
+const baseUrl = process.env.BASE_URL;
+
 //CORS MIDDLE WARE
 const cors = require('cors');
 app.use(
@@ -17,8 +21,7 @@ app.use(
 ); 
  
 
-require('dotenv').config();
-const port = process.env.PORT;
+
 
 //Image Storage Engine
 const storage = multer.diskStorage({
@@ -38,7 +41,7 @@ app.post("/api/upload", upload.single('product'),(req,res)=>{
 
   res.json({
     success:1,
-    image_url:`http://localhost:${port}/images/${req.file.filename}`
+    image_url:`${baseUrl}/images/${req.file.filename}`
   })
 })
 
