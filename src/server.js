@@ -6,7 +6,7 @@ import path from 'path';
 import multer from 'multer'; 
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const app = express();
+
 
 require('dotenv').config();
 const port = process.env.PORT;
@@ -14,6 +14,7 @@ const baseUrl = process.env.BASE_URL;
 
 //CORS MIDDLE WARE
 const cors = require('cors');
+const app = express();
 app.use(
   cors({
     origin: ["http://localhost:8080","http://localhost:5173","https://jc-shop.onrender.com", "https://jc-shop-admin.onrender.com"]
