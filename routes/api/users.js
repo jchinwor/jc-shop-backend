@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User') 
-
-
+const { check, validationResult } = require('express-validator');
+const { validateUserLogin,validateUserSignup, userValidation } = require("../../middleware/validation/user");
 const key = process.env.SECRET;
 
 
@@ -32,7 +32,7 @@ router.get('/', (req, res) =>{
  * @access Public
  */
 
-router.post('/login',(req,res)=>{
+router.post('/login',validateUserLogin,userValidation,(req,res)=>{
 
     User.findOne({
         email: req.body.email
@@ -414,9 +414,7 @@ router.post('/:userId/deleteCartItem', async (req,res)=>{
  * @desc Register the User
  * @access Public
  */
-router.post('/register', async(req, res) =>{
-
-
+router.post('/register',validateUserSignup,userValidation,async(req, res) =>{
 
     const emailExist = await User.findOne({
         email: req.body.email 
