@@ -20,7 +20,7 @@ exports.validateUserSignup = [
     .isLength({ min: 3, max:20})
     .withMessage('Lastname must be within 3 to 20 characters!'),
     check('email','Invalid email').normalizeEmail().isEmail(),
-    check('password','Password is required and must be within 3 to 20 characters!').exists().trim().isLength({ min: 8, max:20}),
+    check('password','Password is required and must be within 8 to 20 characters!').exists().trim().isLength({ min: 8, max:20}),
     check('confirm_password').exists().trim().custom((value,{req})=>{
 
         if(value !== req.body.password){
@@ -32,7 +32,7 @@ exports.validateUserSignup = [
 ]
 exports.validateUserLogin = [
     check('email','Invalid email').normalizeEmail().isEmail(),
-    check('password','Password is required and must be within 3 to 20 characters!').exists().trim().isLength({ min: 8, max:20}),
+    check('password','Password is required and must be within 8 to 20 characters!').exists().trim().isLength({ min: 8, max:20}),
 ]
 
 exports.userValidation = (req, res, next) =>{
