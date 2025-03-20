@@ -101,7 +101,16 @@ app.get('/api/config/paypal', (req,res) =>{
     })
     // res.send(process.env.PAYPAL_CLIENT_ID)
 })
- 
+
+
+app.post('/sendMail', (req,res) =>{
+
+    res.json({
+      success:true,
+      message:"API end point working",
+    })
+    // res.send(process.env.PAYPAL_CLIENT_ID)
+})
 //Get Products   
 
 // app.get('/api/products', async (req,res)=>{
