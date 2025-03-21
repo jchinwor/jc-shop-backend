@@ -1,14 +1,14 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config(); // Load environment variables
+
 
 // Configure the SMTP transporter
 const transporter = nodemailer.createTransport({
-  host: "mail.jenkinschinwor.com", 
-  port: 587,
+  host: process.env.SMTP_HOST, 
+   port: 587,
   secure: false, // true for SSL (465), false for TLS (587)
   auth: {
-    user: "info@jenkinschinwor.com",
-    pass: "mankind007@",
+    user: process.env.USERNAME,
+    pass: process.env.SMTP_PASSWORD,
   },
 });
 
@@ -25,7 +25,7 @@ transporter.verify((error, success) => {
 const sendEmail = async (to, subject, text, html) => {
   try {
     const info = await transporter.sendMail({
-      from: `"Your Name" <info@jenkinschinwor.com>`, // Improve formatting
+      from: `"Your Name" <${process.env.USERNAME}>`, // Improve formatting
       to,
       subject,
       text,
