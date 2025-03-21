@@ -1,6 +1,10 @@
 const nodemailer = require("nodemailer");
-
 import "dotenv/config";
+console.log("SMTP HOST:", process.env.SMTP_HOST);
+console.log("SMTP PORT:", process.env.SMTP_PORT);
+console.log("USERNAME:", process.env.USERNAME);
+console.log("PASSWORD:", process.env.SMTP_PASSWORD ? "Loaded" : "Not Loaded");
+
 
 
 // Configure the SMTP transporter
