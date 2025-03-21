@@ -10,7 +10,7 @@ const { validateUserLogin,validateUserSignup, userValidation } = require("../../
 const key = process.env.SECRET;
 
 
-
+  
 router.get('/', (req, res) =>{ 
 
     User.find({}).then(users => {

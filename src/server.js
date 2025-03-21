@@ -17,7 +17,7 @@ const cors = require('cors');
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:8080","http://localhost:5173","https://jc-shop.onrender.com", "https://jc-shop-admin.onrender.com"]
+    origin: ["http://localhost:8080","https://jenkinschinwor.com","http://localhost:5173","https://jc-shop.onrender.com", "https://jc-shop-admin.onrender.com"]
   })
 ); 
  
@@ -103,14 +103,23 @@ app.get('/api/config/paypal', (req,res) =>{
 })
 
 
-app.post('/sendMail', (req,res) =>{
+// Email API Route
+app.post("/send-email", async (req, res) => {
+  const { to, subject, text, html } = req.body;
 
-    res.json({
-      success:true,
-      message:"API end point working",
-    })
-    // res.send(process.env.PAYPAL_CLIENT_ID)
-})
+  if (!to || !subject || (!text && !html)) {
+    return res.status(400).json({ success: false, message: "Invalid request body" });
+  }
+
+  const result = await sendEmail(to, subject, text, html);
+
+  if (result.success) {
+    return res.status(200).json({ success: true, message: "Email sent successfully", messageId: result.messageId });
+  } else {
+    return res.status(500).json({ success: false, message: "Email sending failed", error: result.error });
+  }
+});
+
 //Get Products   
 
 // app.get('/api/products', async (req,res)=>{
