@@ -4,6 +4,7 @@ import { MongoClient, ServerApiVersion  } from 'mongodb'
 import mongoose from 'mongoose';
 import path from 'path';   
 import multer from 'multer'; 
+import { sendEmail } from "./middleware/emailService.js";
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
