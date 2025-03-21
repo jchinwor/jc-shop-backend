@@ -1,22 +1,31 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config(); // If using environment variables
+require("dotenv").config(); // Load environment variables
 
 // Configure the SMTP transporter
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST, // Example: mail.yourdomain.com
-  port: process.env.SMTP_PORT, // Use 587 for TLS, 465 for SSL
-  secure: true, // true for port 465, false for 587
+  host: process.env.SMTP_HOST, 
+  port: process.env.SMTP_PORT,
+  secure: process.env.SMTP_PORT == 465, // true for SSL (465), false for TLS (587)
   auth: {
     user: process.env.USERNAME,
     pass: process.env.SMTP_PASSWORD,
   },
 });
 
+// Verify SMTP Connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SMTP Connection Error:", error);
+  } else {
+    console.log("SMTP Server Ready");
+  }
+});
+
 // Function to send email
 const sendEmail = async (to, subject, text, html) => {
   try {
     const info = await transporter.sendMail({
-      from: process.env.USERNAME,
+      from: `"Your Name" <${process.env.USERNAME}>`, // Improve formatting
       to,
       subject,
       text,
