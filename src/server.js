@@ -115,7 +115,7 @@ app.post("/send-email", async (req, res) => {
   const result = await sendEmail(email, subject, message);
 
   if (result.success) {
-    return res.status(200).json({ success: true, message: "Email sent successfully", messageId: result.messageId });
+    return res.status(200).json({ success: true, message: "Thank you for contacting us, we will get back to you shortly", messageId: result.messageId });
   } else {
     return res.status(500).json({ success: false, message: "Email sending failed", error: result.error });
   }
