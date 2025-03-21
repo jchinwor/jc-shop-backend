@@ -23,14 +23,13 @@ transporter.verify((error, success) => {
 });
 
 // Function to send email
-const sendEmail = async (to, subject, text, html) => {
+const sendEmail = async (email,subject,message) => {
   try {
     const info = await transporter.sendMail({
       from: `"Your Name" <${process.env.SMTP_USERNAME}>`, // Improve formatting
-      to,
+      to:"kevjames940@gmail.com",
       subject,
-      text,
-      html,
+      text:`New Message \n\nSubject: ${subject}\nFrom: ${email}\nMessage:${message}`,
     });
 
     return { success: true, messageId: info.messageId };

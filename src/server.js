@@ -106,13 +106,13 @@ app.get('/api/config/paypal', (req,res) =>{
 
 // Email API Route
 app.post("/send-email", async (req, res) => {
-  const { to, subject, text, html } = req.body;
+  const {email, subject, message } = req.body;
 
-  if (!to || !subject || (!text && !html)) {
+  if (!email || !subject || !message ) {
     return res.status(400).json({ success: false, message: "Invalid request body" });
   }
 
-  const result = await sendEmail(to, subject, text, html);
+  const result = await sendEmail(email, subject, message);
 
   if (result.success) {
     return res.status(200).json({ success: true, message: "Email sent successfully", messageId: result.messageId });
