@@ -1,10 +1,5 @@
 const nodemailer = require("nodemailer");
 import "dotenv/config";
-console.log("SMTP HOST:", process.env.SMTP_HOST);
-console.log("SMTP PORT:", process.env.SMTP_PORT);
-console.log("USERNAME:", process.env.USERNAME);
-console.log("PASSWORD:", process.env.SMTP_PASSWORD ? "Loaded" : "Not Loaded");
-
 
 
 // Configure the SMTP transporter
@@ -13,7 +8,7 @@ const transporter = nodemailer.createTransport({
    port: 587,
   secure: false, // true for SSL (465), false for TLS (587)
   auth: {
-    user: process.env.USERNAME,
+    user: process.env.SMTP_USERNAME,
     pass: process.env.SMTP_PASSWORD,
   },
 });
@@ -31,7 +26,7 @@ transporter.verify((error, success) => {
 const sendEmail = async (to, subject, text, html) => {
   try {
     const info = await transporter.sendMail({
-      from: `"Your Name" <${process.env.USERNAME}>`, // Improve formatting
+      from: `"Your Name" <${process.env.SMTP_USERNAME}>`, // Improve formatting
       to,
       subject,
       text,
