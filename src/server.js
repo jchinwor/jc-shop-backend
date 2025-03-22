@@ -18,7 +18,7 @@ const cors = require('cors');
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:8080","https://jenkinschinwor.com","https://www.jenkinschinwor.com","http://localhost:5173","https://jc-shop.onrender.com", "https://jc-shop-admin.onrender.com"]
+    origin: ["http://localhost:8080","https://jenkinschinwor.com","https://jcportfolio.onrender.com","https://www.jenkinschinwor.com","http://localhost:5173","https://jc-shop.onrender.com", "https://jc-shop-admin.onrender.com"]
   })
 ); 
  
