@@ -92,7 +92,7 @@ app.use('/api/categories', categories)
 app.get('/', function(req,res){
   res.set('Content-Type', 'text/html; charset=utf-8');
   res.send("<h1>Hello from node app </h1>");
-}
+})
 //Bring in orders route
 const orders = require('../routes/api/orders')
 app.use('/api/orders', orders)
