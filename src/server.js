@@ -89,7 +89,9 @@ app.use('/api/products', products)
 const categories = require('../routes/api/categories')
 app.use('/api/categories', categories)
 
-
+app.get('/', function(req,res){
+  res.set('Content-Type', 'text/html; charset=utf-8');
+}
 //Bring in orders route
 const orders = require('../routes/api/orders')
 app.use('/api/orders', orders)
