@@ -27,7 +27,7 @@ const sendEmail = async (email,subject,message) => {
   try {
     const info = await transporter.sendMail({
       from: `"Your Name" <${process.env.SMTP_USERNAME}>`, // Improve formatting
-      to:"kevjames940@gmail.com",
+      to:process.env.Emailto_address,
       subject,
       text:`New Message \n\nSubject: ${subject}\nFrom: ${email}\nMessage:${message}`,
     });
